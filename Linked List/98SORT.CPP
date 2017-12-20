@@ -1,0 +1,92 @@
+#include<iostream.h>
+#include<conio.h>
+#include<linklist.h>
+#include<process.h>
+void main()
+{
+	clrscr();
+	ll l1,lz,lo,lt;
+	cout<<"\nEnter the linked list ";
+	l1.input();
+	node *prev=0, *ptr=l1.head, *temp;
+	while(ptr)
+	{
+		if(ptr->info==0)
+		{
+			if(!lz.head)
+			{
+				lz.head=lz.tail=ptr;
+				ptr=ptr->next;
+				lz.tail->next=0;
+			}
+			else
+			{
+				lz.tail->next=ptr;
+				lz.tail=ptr;
+				ptr=ptr->next;
+				lz.tail->next=0;
+			}
+		}
+		if(ptr->info==1)
+		{
+			if(!lo.head)
+			{
+				lo.head=lo.tail=ptr;
+				ptr=ptr->next;
+				lo.tail->next=0;
+			}
+			else
+			{
+				lo.tail->next=ptr;
+				lo.tail=ptr;
+				ptr=ptr->next;
+				lo.tail->next=0;
+			}
+		}
+		if(ptr->info==2)
+		{
+			if(!lt.head)
+			{
+				lt.head=lt.tail=ptr;
+				ptr=ptr->next;
+				lt.tail->next=0;
+			}
+			else
+			{
+				lt.tail->next=ptr;
+				lt.tail=ptr;
+				ptr=ptr->next;
+				lt.tail->next=0;
+			}
+		}
+	}
+	if(lz.head)
+	{
+		if(lo.head)
+		{
+			lz.tail->next=lo.head;
+			lz.tail=lo.tail;
+		}
+		if(lt.head)
+		{
+			lz.tail->next=lt.head;
+			lz.tail=lt.tail;
+		}
+		l1=lz;
+	}
+	else if(lo.head)
+	{
+		if(lt.head)
+		{
+			lo.tail->next=lt.head;
+			lo.tail=lt.tail;
+		}
+		l1=lo;
+	}
+	else
+	{
+		l1=lt;
+	}
+	l1.print();
+	getch();
+}
