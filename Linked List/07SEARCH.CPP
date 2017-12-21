@@ -5,16 +5,24 @@ void main()
 {
 	clrscr();
 	ll l1;
-	node *ptr=0, *mid=0;
+	int n;
+	node *ptr=0;
 	l1.input();
-	cout<<"\nThe linked list is ";
-	l1.print();
-	ptr=mid=l1.head;
-	while(ptr&&ptr->next)
+	cout<<"\nEnter the element you want to search ";
+	cin>>n;
+	ptr=l1.head;
+	while(ptr)
 	{
-		mid=mid->next;
-		ptr=ptr->next->next;
+		if(ptr->info==n)
+		{
+			cout<<"\nElement found";
+			break;
+		}
+		ptr=ptr->next;
 	}
-	cout<<"\nThe middle element is "<<mid->info;
+	if(!ptr)
+	{
+		cout<<"\nElement not found";
+	}
 	getch();
 }
