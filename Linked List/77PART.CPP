@@ -1,0 +1,110 @@
+#include<iostream.h>
+#include<conio.h>
+#include<linklist.h>
+#include<process.h>
+void main()
+{
+	clrscr();
+	int key;
+	ll l1,less,eq,more;
+	node *ptr=0;
+	cout<<"\nEnter the linked list ";
+	l1.input();
+	cout<<"\nEnter the value you want to partition around ";
+	cin>>key;
+	ptr=l1.head;
+	while(ptr)
+	{
+		if(ptr->info==key)
+			break;
+		ptr=ptr->next;
+	}
+	if(!ptr)
+	{
+		cout<<"\nKey not found";
+		getch();
+		exit(0);
+	}
+	node *prev=0, *temp;
+	ptr=l1.head;
+	while(ptr)
+	{
+		if(ptr->info<key)
+		{
+			if(!less.head)
+			{
+				less.head=less.tail=ptr;
+				ptr=ptr->next;
+				less.tail->next=0;
+			}
+			else
+			{
+				less.tail->next=ptr;
+				less.tail=ptr;
+				ptr=ptr->next;
+				less.tail->next=0;
+			}
+		}
+		if(ptr->info==key)
+		{
+			if(!eq.head)
+			{
+				eq.head=eq.tail=ptr;
+				ptr=ptr->next;
+				eq.tail->next=0;
+			}
+			else
+			{
+				eq.tail->next=ptr;
+				eq.tail=ptr;
+				ptr=ptr->next;
+				eq.tail->next=0;
+			}
+		}
+		if(ptr->info>key)
+		{
+			if(!more.head)
+			{
+				more.head=more.tail=ptr;
+				ptr=ptr->next;
+				more.tail->next=0;
+			}
+			else
+			{
+				more.tail->next=ptr;
+				more.tail=ptr;
+				ptr=ptr->next;
+				more.tail->next=0;
+			}
+		}
+	}
+	if(less.head)
+	{
+		if(eq.head)
+		{
+			less.tail->next=eq.head;
+			less.tail=eq.tail;
+		}
+		if(more.head)
+		{
+			less.tail->next=more.head;
+			less.tail=more.tail;
+		}
+		l1=less;
+	}
+	else if(eq.head)
+	{
+		if(more.head)
+		{
+			eq.tail->next=more.head;
+			eq.tail=more.tail;
+		}
+		l1=eq;
+	}
+	else
+	{
+		l1=more;
+	}
+	l1.print();
+	getch();
+}
